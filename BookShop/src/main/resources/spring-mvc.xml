@@ -19,28 +19,14 @@
     <!-- 3.配置jsp 显示ViewResolver视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-        <property name="prefix" value="/WEB-INF/" />
+        <property name="prefix" value="/WEB-INF/"/>
         <property name="suffix" value=".jsp" />
-    </bean>
-
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" >
-        <property name="messageConverters">
-            <list>
-                <bean class = "org.springframework.http.converter.StringHttpMessageConverter">
-                    <property name = "supportedMediaTypes">
-                        <list>
-                            <value>text/html;charset=UTF-8</value>
-                        </list>
-                    </property>
-                </bean>
-            </list>
-        </property>
     </bean>
 
     <!-- 4.扫描web相关的bean -->
     <context:component-scan base-package="com.lv.controller" />
     <!-- 静态资源处理 -->
-    <mvc:resources mapping="" location="" />
+<!--    <mvc:resources mapping="/static/**" location="/static/" />-->
 
     <!--解决ResponseBody中文乱码-->
     <mvc:annotation-driven>
@@ -64,6 +50,7 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
 
 
 
