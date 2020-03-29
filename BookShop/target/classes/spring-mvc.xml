@@ -25,8 +25,6 @@
 
     <!-- 4.扫描web相关的bean -->
     <context:component-scan base-package="com.lv.controller" />
-    <!-- 静态资源处理 -->
-<!--    <mvc:resources mapping="/static/**" location="/static/" />-->
 
     <!--解决ResponseBody中文乱码-->
     <mvc:annotation-driven>
@@ -50,9 +48,5 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
-
-
-
-
 
 </beans>
