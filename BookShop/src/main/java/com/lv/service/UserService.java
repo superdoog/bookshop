@@ -8,11 +8,14 @@ import java.util.List;
  * @author lv
  */
 public interface UserService {
-    /**
-     * 查询所有user
-     *
-     * @return
-     */
-    List<User> findAllUser();
+
+    List<User> findAllUser(int currentPage, int pageSize);
+
+    int addUser(User user);
+
+    int getCount();
+
+    int deleteByuid(int uid);
+
 
 }

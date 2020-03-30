@@ -22,7 +22,7 @@
             <div class="page-header">
                 <h1>
                     用户<small>管理</small>
-                    <a class="pull-right" href="${pageContext.request.contextPath}/">
+                    <a class="pull-right" href="${pageContext.request.contextPath}/addUserPage">
                         <button type="button" class="btn btn-default active">增加用户</button>
                     </a>
                 </h1>
@@ -48,56 +48,37 @@
                         <td><span>${user.email}</span></td>
                         <td><span>${user.phone}</span></td>
                         <td><span><a
-                                href="${pageContext.request.contextPath}/bookModifyPage?book_id=${book.book_id}">编辑</a></span>
-                            <span><a class="deleteBook" href="javascript:;"
-                                     book_id=${book.book_id} book_name=${book.book_name}>删除</a></span></td>
+                                href="${pageContext.request.contextPath}/bookModifyPage?uid=${user.uid}">编辑</a></span>
+                            <span><a class="deleteUser" href="javascript:;" userid=${user.uid} username=${user.uname}>删除</a></span></td>
                     </tr>
                 </c:forEach>
             </table>
-
+            <div class="row clearfix">
+                <form class="navbar-form navbar-right" role="search" action="${pageContext.request.contextPath}/UserManage">
+                    <input type="hidden" name="pageIndex" value="1"/>
+                </form>
+                <input type="hidden" id="totalPageCount" value="${totalPageCount}"/>
+                <c:import url="../page.jsp">
+                    <c:param name="totalCount" value="${totalCount}"/>
+                    <c:param name="currentPageNo" value="${currentPageNo}"/>
+                    <c:param name="totalPageCount" value="${totalPageCount}"/>
+                </c:import>
+            </div>
         </div>
         <div class="col-md-2 column">
         </div>
     </div>
 
-    <div class="row clearfix">
-        <div class="col-md-3 column">
-        </div>
-        <div class="col-md-6 column">
-            <div class="pager right">
-                <ul class="clearfix">
-                    <c:choose>
-                        <c:when test="${pageInfo.hasPreviousPage}">
-                            <li><a href="UserManage?pageNum=1">首页</a></li>
-                            <li><a href="UserManage?pageNum=${pageInfo.prePage }">上一页</a></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li><span>首页</span></li>
-                            <li><span>上一页</span></li>
-                        </c:otherwise>
-                    </c:choose>
-
-                    <c:forEach var="index" begin="1" end="${pageInfo.pages }">
-
-                        <li
-                                <c:if test="${index==pageInfo.pageNum}">class="current"</c:if>><a
-                                href="UserManage?pageNum=${index }">${index }</a></li>
-                    </c:forEach>
-
-                    <c:choose>
-                        <c:when test="${pageInfo.hasNextPage}">
-                            <li><a href="UserManage?pageNum=${pageInfo.nextPage }">下一页</a></li>
-                            <li><a href="UserManage?pageNum=${pageInfo.pages }">尾页</a></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li><span>下一页</span></li>
-                            <li><span>尾页</span></li>
-                        </c:otherwise>
-                    </c:choose>
-                </ul>
+    <!--点击删除按钮后弹出的页面-->
+    <div class="zhezhao"></div>
+    <div class="remove" id="removeUse">
+        <div class="removerChid">
+            <h2>提示</h2>
+            <div class="removeMain">
+                <p>你确定要删除该用户吗？</p>
+                <a href="#" id="yes">确定</a>
+                <a href="#" id="no">取消</a>
             </div>
-        </div>
-        <div class="col-md-3 column">
         </div>
     </div>
 </div>
@@ -112,7 +93,7 @@
         </span>
     </div>
 </footer>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/user.js"></script>
 </body>
 </html>
 

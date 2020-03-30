@@ -3,7 +3,7 @@ package com.lv.util;
 public class Constant {
 
 	public static final int MB_PAGE_SIZE = 7;
-	public static final int MU_PAGE_SIZE = 15;
+	public static final int USER_PAGE_SIZE = 6;
 	public static final int PW_PAGE_SIZE = 12;
 	public static final int C_PAGE_SIZE = 3;
 	public static final int UO_PAGE_SIZE = 3;

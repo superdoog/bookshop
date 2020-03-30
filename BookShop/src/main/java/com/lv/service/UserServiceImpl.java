@@ -17,13 +17,42 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public List<User> findAllUser() {
+    public List<User> findAllUser(int currentPage, int pageSize) {
         List<User> users = null;
+        //换算索引
+        int currentPageNo = (currentPage - 1) * pageSize;
         try {
-            users = userMapper.findAllUser();
+            users = userMapper.findAllUser(currentPageNo, pageSize);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return users;
+    }
+
+    @Override
+    public int addUser(User user) {
+        return userMapper.insert(user);
+    }
+
+    @Override
+    public int getCount() {
+        int count = 0;
+        try {
+            count = userMapper.getCount();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    @Override
+    public int deleteByuid(int uid) {
+        int flag = 0;
+        try {
+            flag = userMapper.deleteByuid(uid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
     }
 }
