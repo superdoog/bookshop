@@ -55,4 +55,26 @@ public class UserServiceImpl implements UserService {
         }
         return flag;
     }
+
+    @Override
+    public User getUserById(int uid) {
+        User user = null;
+        try {
+            user = userMapper.getUserById(uid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public int updateUser(User user) {
+        int flag = 0;
+        try {
+        flag = userMapper.updateUser(user);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+        return flag;
+    }
 }

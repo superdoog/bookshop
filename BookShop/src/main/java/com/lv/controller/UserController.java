@@ -87,8 +87,9 @@ public class UserController {
     public String addUserPage() {
         return "manage/user-add";
     }
+
     @RequestMapping("/addUser")
-    public ModelAndView addUser(ModelAndView mv, String userName,String passWord,String gender,String email,String phone,String address){
+    public ModelAndView addUser(ModelAndView mv, String userName, String passWord, String gender, String email, String phone, String address) {
         User user = new User();
         user.setUname(userName);
         user.setPassword(passWord);
@@ -101,9 +102,37 @@ public class UserController {
         return mv;
     }
 
+    @RequestMapping("/UserModifyPage")
+    public ModelAndView toBookModifyPage(ModelAndView mv, @RequestParam("uid") String uid) {
+        User user = userService.getUserById(Integer.parseInt(uid));
+        mv.addObject("user", user);
+        mv.setViewName("manage/user-modify");
+        return mv;
+    }
+    @RequestMapping("/updateUser")
+    public ModelAndView updateBook(ModelAndView mv, @RequestParam("uid") String uid,
+                                   @RequestParam("userName") String userName,
+                                   @RequestParam("passWord") String passWord,
+                                   @RequestParam("gender") String gender,
+                                   @RequestParam("email") String email,
+                                   @RequestParam("phone") String phone,
+                                   @RequestParam("address") String address) {
+        int flag;
+        User user = new User(Integer.parseInt(uid), userName, passWord, gender, email, phone, address);
+
+        flag = userService.updateUser(user);
+        if (flag == 0) {
+            mv.addObject("error", "修改user失败");
+            mv.setViewName("error");
+            return mv;
+        }
+        mv.setViewName("redirect:/UserManage");
+        return mv;
+    }
+
     @ResponseBody
     @RequestMapping("/deleteUser")
-    public String deleteBook(@RequestParam("userid") String uid){
+    public String deleteBook(@RequestParam("userid") String uid) {
         int flag;
         Map<String, String> resultMap = new HashMap<>();
         flag = userService.deleteByuid(Integer.parseInt(uid));
@@ -121,5 +150,7 @@ public class UserController {
         }
         return JSONArray.toJSONString(resultMap);
     }
+
+
 
 }
