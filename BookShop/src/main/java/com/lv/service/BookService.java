@@ -11,7 +11,12 @@ import java.util.Set;
 public interface BookService {
     List<Book> findAllBook(int currentPage, int pageSize);
 
+    List<Book> findBook(String key, String type, int currentPage, int pageSize);
+
     int getCount();
+
+    int getSelectCount(String key, String type);
+
 
     int deleteBybid(int bid);
 

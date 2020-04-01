@@ -14,7 +14,11 @@ import java.util.Set;
 public interface BookMapper {
     List<Book> findAllBook(@Param("currentPage") int currentPage, @Param("pageSize") int pageSize);
 
+    List<Book> findBook(@Param("key") String key, @Param("type") String type, @Param("currentPage") int currentPage, @Param("pageSize") int pageSize);
+
     int getCount();
+
+    int getSelectCount(@Param("key") String key, @Param("type") String type);
 
     int deleteBybid(@Param("bid") int bid);
 
@@ -25,5 +29,6 @@ public interface BookMapper {
     Set<String> getBookType();
 
     int addBook(Book book);
+
 
 }

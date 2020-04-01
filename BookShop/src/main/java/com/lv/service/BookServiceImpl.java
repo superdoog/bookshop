@@ -32,10 +32,34 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<Book> findBook(String key, String type, int currentPage, int pageSize) {
+        List<Book> books = null;
+        //换算索引
+        int currentPageNo = (currentPage - 1) * pageSize;
+        try {
+            books = bookMapper.findBook(key, type, currentPageNo, pageSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return books;
+    }
+
+    @Override
     public int getCount() {
         int count = 0;
         try {
             count = bookMapper.getCount();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    @Override
+    public int getSelectCount(String key, String type) {
+        int count = 0;
+        try {
+            count = bookMapper.getSelectCount(key, type);
         } catch (Exception e) {
             e.printStackTrace();
         }

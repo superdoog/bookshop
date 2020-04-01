@@ -7,9 +7,36 @@
         limit #{currentPage},#{pageSize}
     </select>
 
+    <select id="findBook" resultType="com.lv.pojo.Book">
+        select *
+        from book
+        <where>
+            <if test="key != null and key != ''">
+                bname like concat('%',#{key},'%')
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+        </where>
+        limit #{currentPage},#{pageSize}
+    </select>
+
     <select id="getCount" resultType="int">
         select count(1)
         from book
+    </select>
+
+    <select id="getSelectCount" resultType="int">
+        select count(1)
+        from book
+        <where>
+            <if test="key != null and key != ''">
+                bname like concat('%',#{key},'%')
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+        </where>
     </select>
 
     <delete id="deleteBybid">
@@ -66,4 +93,6 @@
         insert into book_shop.book(bid, bname, detail, price, writer, printer, date, type, image, store)
         VALUES (#{bid}, #{bname}, #{detail}, #{price}, #{writer}, #{printer}, #{date}, #{type}, #{image}, #{store})
     </insert>
+
+
 </mapper>

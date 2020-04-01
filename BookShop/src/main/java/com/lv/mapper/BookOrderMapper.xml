@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lv.mapper.BookOrderMapper">
+
+    <resultMap id="bookOrderMap" type="BookOrder">
+        <id property="oid" column="oid"/>
+        <result property="date" column="date"/>
+        <result property="oname" column="oname"/>
+        <result property="adress" column="adress"/>
+        <result property="status" column="status"/>
+        <result property="uid" column="uid"/>
+        <collection property="orderDetails" ofType="com.lv.pojo.OrderDetail">
+            <id property="id" column="id"/>
+            <result property="orderId" column="order_id"/>
+            <result property="bookId" column="book_id"/>
+            <result property="bookNum" column="book_num"/>
+            <result property="status" column="status"/>
+            <collection property="books" ofType="com.lv.pojo.Book">
+                <id property="bid" column="bid"/>
+                <result property="bname" column="bname"/>
+                <result property="price" column="price"/>
+                <result property="image" column="image"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="findAllBookOrder" resultMap="bookOrderMap">
+        select bo.*, o.*, b.bid bid, b.bname bname, b.price price, b.image image
+        from book_order bo,
+             order_detail o,
+             book b
+        where bo.oid = o.order_id
+          and o.book_id = b.bid
+        order by bo.oid desc limit #{currentPage},#{pageSize}
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(1)
+        from book_order
+    </select>
+
+    <update id="updateBookOrder" parameterType="BookOrder">
+        update book_order
+        <set>
+            <if test="oname != null and oname != ''">
+                oname = #{oname},
+            </if>
+            <if test="adress != null and adress != ''">
+                adress = #{adress},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status}
+            </if>
+        </set>
+        where oid = #{oid}
+    </update>
+
+    <select id="getBookOrderByoid" resultType="com.lv.pojo.BookOrder">
+        select *
+        from book_order
+        where oid = #{oid}
+    </select>
+
+
+</mapper>

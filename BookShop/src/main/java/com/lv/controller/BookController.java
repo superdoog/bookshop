@@ -32,7 +32,6 @@ public class BookController {
 
     @RequestMapping("/BookManage")
     public ModelAndView manaBook(ModelAndView mv, @RequestParam(value = "pageIndex", required = false) String pageIndex){
-
         //获取总数
         int totalCount = bookService.getCount();
         //当前页面
@@ -212,6 +211,71 @@ public String modifyUserPage(Model model, Integer bid) {
 
     }
 
+    @RequestMapping("/index")
+    public ModelAndView index(ModelAndView mv) {
+        Set<String> bts = bookService.getBookType();
+        List<Book> books = bookService.findAllBook(1,10);
+        mv.addObject("books", books);
+        mv.addObject("bts", bts);
+        mv.setViewName("front/index");
+        return mv;
+    }
+    @RequestMapping("/productList")
+    public ModelAndView productList(ModelAndView mv,
+                                    String type,
+                                    String key,
+                                    @RequestParam(value = "pageIndex", required = false) String pageIndex) {
+
+        //获取总数
+        int totalCount = bookService.getSelectCount(key, type);
+        //当前页面
+        int currentPageNo = 1;
+        //总页数
+        PageSupport pageSupport = new PageSupport();
+        pageSupport.setCurrentPageNo(currentPageNo);
+        pageSupport.setPageSize(Constant.PRODUCT_LIST_PAGE_SIZE);
+        pageSupport.setTotalCount(totalCount);
+        int totalPageCount = pageSupport.getTotalPageCount();
+
+        if (pageIndex != null) {
+            try {
+                currentPageNo = Integer.valueOf(pageIndex);
+            } catch (NumberFormatException e) {
+                mv.setViewName("redirect:../static/404.html");
+                return mv;
+            }
+        }
+        // 控制首页和尾页在范围内
+        if (currentPageNo < 1) {
+            currentPageNo = 1;
+        } else if (currentPageNo > totalPageCount) {
+            currentPageNo = totalPageCount;
+        }
+
+        Set<String> bts = bookService.getBookType();
+
+        List<Book> books = bookService.findBook(key, type, currentPageNo, Constant.PRODUCT_LIST_PAGE_SIZE);
+
+        mv.addObject("totalPageCount", totalPageCount);
+        mv.addObject("totalCount", totalCount);
+        mv.addObject("currentPageNo", currentPageNo);
+        mv.addObject("books", books);
+        mv.addObject("bts", bts);
+        mv.setViewName("front/product-list");
+        return mv;
+    }
+
+    @RequestMapping("/productView")
+    public ModelAndView bookView(ModelAndView mv, Integer bid) {
+        Book book = bookService.getBookBybid(bid);
+        String dateStr = new SimpleDateFormat("yyyy-MM-dd").format(book.getDate());
+        Set<String> bts = bookService.getBookType();
+        mv.addObject("bts", bts);
+        mv.addObject("book", book);
+        mv.addObject("dateStr", dateStr);
+        mv.setViewName("front/product-view");
+        return mv;
+    }
 
 
 }
