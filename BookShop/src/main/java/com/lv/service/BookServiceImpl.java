@@ -120,4 +120,13 @@ public class BookServiceImpl implements BookService {
         }
         return flag;
     }
+
+    @Override
+    public boolean checkStore(Integer bid, Integer number) {
+        int store = bookMapper.getBookBybid(bid).getStore();
+        if (store-number>=0){
+            return true;
+        }
+        return false;
+    }
 }

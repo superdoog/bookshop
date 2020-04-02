@@ -35,32 +35,23 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img alt=""
-                                     src="${pageContext.request.contextPath}/static/image/1.jpg"/>
+                                <a href="${pageContext.request.contextPath}/productView?bid=10"><img alt="" src="${pageContext.request.contextPath}/static/image/1.jpg"/></a>
                             </div>
                             <div class="item">
-                                <img alt=""
-                                     src="${pageContext.request.contextPath}/static/image/2.jpg"/>
+                                <a href="${pageContext.request.contextPath}/productView?bid=11"><img alt="" src="${pageContext.request.contextPath}/static/image/2.jpg"/></a>
                             </div>
                             <div class="item">
-                                <img alt=""
-                                     src="${pageContext.request.contextPath}/static/image/3.jpg"/>
+                                <a href="${pageContext.request.contextPath}/productView?bid=12"><img alt="" src="${pageContext.request.contextPath}/static/image/3.jpg"/></a>
                             </div>
                             <div class="item">
-                                <img alt=""
-                                     src="${pageContext.request.contextPath}/static/image/4.jpg"/>
+                                <a href="${pageContext.request.contextPath}/productView?bid=13"><img alt="" src="${pageContext.request.contextPath}/static/image/4.jpg"/></a>
                             </div>
                             <div class="item">
-                                <img alt=""
-                                     src="${pageContext.request.contextPath}/static/image/5.jpg"/>
+                                <a href="${pageContext.request.contextPath}/productView?bid=14"><img alt="" src="${pageContext.request.contextPath}/static/image/5.jpg"/></a>
                             </div>
-
                         </div>
-                        <a class="left carousel-control" href="#carousel-283645" data-slide="prev"><span
-                                class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control"
-                                                                                        href="#carousel-283645"
-                                                                                        data-slide="next"><span
-                            class="glyphicon glyphicon-chevron-right"></span></a>
+                        <a class="left carousel-control" href="#carousel-283645" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                        <a class="right carousel-control" href="#carousel-283645" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
                     </div>
                 </div>
                 <div class="col-md-1 column">

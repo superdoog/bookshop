@@ -88,6 +88,5 @@ public class OrderController {
         }
         mv.setViewName("redirect:/OrderManage");
         return mv;
-//        return new ModelAndView("redirect:/OrderManage");
     }
 }

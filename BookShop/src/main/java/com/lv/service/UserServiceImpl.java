@@ -68,6 +68,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByuname(String uname) {
+        User user = null;
+        try {
+            user = userMapper.getUserByuname(uname);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
     public int updateUser(User user) {
         int flag = 0;
         try {

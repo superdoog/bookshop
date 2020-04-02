@@ -49,7 +49,7 @@
                         <input type="hidden" name="pageIndex" value="1"/>
                     </form>
                     <input type="hidden" id="totalPageCount" value="${totalPageCount}"/>
-                    <c:import url="../page.jsp">
+                    <c:import url="page.jsp">
                         <c:param name="totalCount" value="${totalCount}"/>
                         <c:param name="currentPageNo" value="${currentPageNo}"/>
                         <c:param name="totalPageCount" value="${totalPageCount}"/>

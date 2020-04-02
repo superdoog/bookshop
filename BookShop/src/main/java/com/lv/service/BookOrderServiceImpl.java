@@ -18,12 +18,24 @@ public class BookOrderServiceImpl implements BookOrderService {
 
     @Override
     public List<BookOrder> findAllBookOrder(int currentPage, int pageSize) {
-
         List<BookOrder> bookOrders = null;
         //换算索引
         int currentPageNo = (currentPage - 1) * pageSize;
         try {
             bookOrders = bookOrderMapper.findAllBookOrder(currentPageNo, pageSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bookOrders;
+    }
+
+    @Override
+    public List<BookOrder> findUserBookOrder(int uid, int currentPage, int pageSize) {
+        List<BookOrder> bookOrders = null;
+        //换算索引
+        int currentPageNo = (currentPage - 1) * pageSize;
+        try {
+            bookOrders = bookOrderMapper.findUserBookOrder(uid, currentPageNo, pageSize);
         } catch (Exception e) {
             e.printStackTrace();
         }

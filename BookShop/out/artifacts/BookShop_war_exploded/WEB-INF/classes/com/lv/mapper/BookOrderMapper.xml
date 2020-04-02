@@ -34,6 +34,18 @@
         order by bo.oid desc limit #{currentPage},#{pageSize}
     </select>
 
+    <select id="findUserBookOrder" resultMap="bookOrderMap">
+        select bo.*, o.*, b.bid bid, b.bname bname, b.price price, b.image image
+        from book_order bo,
+        order_detail o,
+        book b
+        where bo.oid = o.order_id
+        and o.book_id = b.bid
+        and bo.uid = #{uid}
+        order by bo.oid desc limit #{currentPage},#{pageSize}
+    </select>
+
+
     <select id="getCount" resultType="int">
         select count(1)
         from book_order
@@ -60,6 +72,5 @@
         from book_order
         where oid = #{oid}
     </select>
-
 
 </mapper>

@@ -31,17 +31,21 @@
                             <td class="w1 c">${bookOrder.date}</td>
                             <td class="w1 c">收货人:${bookOrder.oname}</td>
                             <td>收货地址：${bookOrder.adress}</td>
-                            <td><span><a href="${pageContext.request.contextPath}/BookOrderModifyPage?oid=${bookOrder.oid}">修改</a></span></td>
+                            <td><span><a
+                                    href="${pageContext.request.contextPath}/BookOrderModifyPage?oid=${bookOrder.oid}">修改</a></span>
+                            </td>
                         </tr>
                         <c:forEach items="${bookOrder.orderDetails}" var="orderDetail">
                             <c:forEach items="${orderDetail.books}" var="book">
                                 <c:if test="${book.bid==orderDetail.bookId}">
                                     <tr>
-                                        <td class="first w4 c">${book.bname}</td>
-                                        <td class="w1 c"><img height="60" width="60" src="${pageContext.request.contextPath}/static/image/product/${book.image}"></td>
-                                        <td class="w1 c">数量：${orderDetail.bookNum}</td>
+                                        <td>${book.bname}</td>
+                                        <td><img height="60" width="60"
+                                                              src="${pageContext.request.contextPath}/static/image/product/${book.image}">
+                                        </td>
+                                        <td>数量：${orderDetail.bookNum}</td>
                                         <td>￥${book.price*orderDetail.bookNum}</td>
-                                        <td class="w1 c">${bookOrder.status}</td>
+                                        <td>${bookOrder.status}</td>
                                     </tr>
                                 </c:if>
                             </c:forEach>
@@ -55,7 +59,7 @@
                         <input type="hidden" name="pageIndex" value="1"/>
                     </form>
                     <input type="hidden" id="totalPageCount" value="${totalPageCount}"/>
-                    <c:import url="../page.jsp">
+                    <c:import url="page.jsp">
                         <c:param name="totalCount" value="${totalCount}"/>
                         <c:param name="currentPageNo" value="${currentPageNo}"/>
                         <c:param name="totalPageCount" value="${totalPageCount}"/>

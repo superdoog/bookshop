@@ -4,19 +4,22 @@ package com.lv.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * @author lv
+ */
 @Controller
 public class FrontGuideController {
-	@RequestMapping("/reg")
+	@RequestMapping("/regjsp")
 	public String Regjsp(){
 		return "front/register";
 	}
-	@RequestMapping("/login")
+	@RequestMapping("/frontLogin")
 	public String Loginjsp(){
 		return "front/login";
 	}
 	@RequestMapping("/cartPage")
 	public String cartPage(){
-		return "front/shopping";
+		return "front/cart";
 	}
 	@RequestMapping("/productListPage")
 	public String productListPage(){
@@ -24,7 +27,7 @@ public class FrontGuideController {
 	}
 	@RequestMapping("/oderPage")
 	public String oderPage(){
-		return "front/order";
+		return "user-order";
 	}
 	@RequestMapping("/shoppingResult")
 	public String shoppingResult(){

@@ -17,7 +17,6 @@ public interface BookService {
 
     int getSelectCount(String key, String type);
 
-
     int deleteBybid(int bid);
 
     Book getBookBybid(int bid);
@@ -27,5 +26,7 @@ public interface BookService {
     Set<String> getBookType();
 
     int addBook(Book book);
+
+    boolean checkStore(Integer bid, Integer number);
 
 }

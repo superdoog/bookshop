@@ -30,6 +30,8 @@ public interface UserMapper {
 
     User getUserById(@Param("uid") int uid);
 
+    User getUserByuname(@Param("uname") String uname);
+
     int updateUser(User user);
 
 }

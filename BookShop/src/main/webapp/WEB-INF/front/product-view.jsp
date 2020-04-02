@@ -23,8 +23,7 @@
             </div>
             <div id="product">
                 <div class="infos">
-                    <div class="thumb"><img height="300" width="300"
-                                            src="${pageContext.request.contextPath}/static/image/product/${book.image}"/>
+                    <div class="thumb"><img height="300" width="300" src="${pageContext.request.contextPath}/static/image/product/${book.image}"/>
                     </div>
                     <div class="buy">
                         <p>价格：<span class="price">￥${book.price}</span></p>
@@ -32,19 +31,14 @@
                         <p>出版社：${book.printer}</p>
                         <p>出版日期：${dateStr}</p>
                         <p>库　存：${book.store}</p>
-                        <p>购买数量：<span id="sub" onclick="subNum();"><span class="glyphicon glyphicon-minus"
-                                                                         aria-hidden="true"></span></span>&nbsp;
-                            <input style="height: 25px; width:25px;" id="number" name="number" value="1" size="2"
-                                   readonly/>&nbsp;
-                            <span id="add" onclick="addNum();"><span class="glyphicon glyphicon-plus"
-                                                                     aria-hidden="true"></span></span></p>
+                        <p>购买数量：<span id="sub" onclick="subNum();"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></span>&nbsp;
+                            <input style="height: 25px; width:25px;" id="number" name="number" value="1" size="2" readonly/>&nbsp;
+                            <span id="add" onclick="addNum();"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></span></p>
                         <div class="button">
                             <c:if test="${book.store>0}">
-                                <a id="buy" href="#"><img class="buyBtn"
-                                                          src="${pageContext.request.contextPath}/static/image/buy.jpg"></a>&nbsp;&nbsp;&nbsp;
+                                <a id="buy" href="#"><img class="buyBtn" src="${pageContext.request.contextPath}/static/image/buy.jpg"></a>&nbsp;&nbsp;&nbsp;
                                 <input type="hidden" id="bid" value="${book.bid}"/>&nbsp;&nbsp;&nbsp;
-                                <a id="submit" href="#"><img
-                                        src="${pageContext.request.contextPath}/static/image/cart.png"></a>
+                                <a id="submit" href="#"><img src="${pageContext.request.contextPath}/static/image/cart.png"></a>
                             </c:if>
                             <c:if test="${book.store==0}">
                                 <img src="${pageContext.request.contextPath}/static/image/null.png">

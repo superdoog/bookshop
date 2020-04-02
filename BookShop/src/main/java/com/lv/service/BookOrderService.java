@@ -11,6 +11,8 @@ public interface BookOrderService {
 
     List<BookOrder> findAllBookOrder(int currentPage,int pageSize);
 
+    List<BookOrder> findUserBookOrder(int uid, int currentPage,int pageSize);
+
     int getCount();
 
     int updateBookOrder(BookOrder bookOrder);

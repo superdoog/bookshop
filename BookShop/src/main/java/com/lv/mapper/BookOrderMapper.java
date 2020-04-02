@@ -14,6 +14,8 @@ public interface BookOrderMapper {
 
     List<BookOrder> findAllBookOrder(@Param("currentPage") int currentPage, @Param("pageSize") int pageSize);
 
+    List<BookOrder> findUserBookOrder(@Param("uid") int uid, @Param("currentPage") int currentPage, @Param("pageSize") int pageSize);
+
     int getCount();
 
     int updateBookOrder(BookOrder bookOrder);
