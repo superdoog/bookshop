@@ -68,8 +68,8 @@
                         </table>
                         <div class="button">
                             <a href="cleanCart.do">清空购物车</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <c:if test="${sessionScope.user!=null}"><a id="submit" href="#"><img src="${pageContext.request.contextPath}/static/image/pay.png"></a></c:if>
-                            <c:if test="${sessionScope.user==null}"><a onclick="unLog();" href="#"><img src="${pageContext.request.contextPath}/static/image/pay.png"></a></c:if>
+                            <c:if test="${sessionScope.userSession!=null}"><a id="submit" href="#"><img src="${pageContext.request.contextPath}/static/image/pay.png"></a></c:if>
+                            <c:if test="${sessionScope.userSession==null}"><a onclick="unLog();" href="#"><img src="${pageContext.request.contextPath}/static/image/pay.png"></a></c:if>
 
 
                         </div>

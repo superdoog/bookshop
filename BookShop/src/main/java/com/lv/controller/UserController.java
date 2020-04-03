@@ -2,7 +2,6 @@ package com.lv.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.lv.pojo.BookOrder;
-import com.lv.pojo.Cart;
 import com.lv.pojo.User;
 import com.lv.service.BookOrderServiceImpl;
 import com.lv.service.UserServiceImpl;
@@ -68,7 +67,7 @@ public class UserController {
             try {
                 currentPageNo = Integer.valueOf(pageIndex);
             } catch (NumberFormatException e) {
-                mv.setViewName("redirect:../static/404.html");
+                mv.setViewName("redirect:../static/404.jsp");
                 return mv;
             }
         }
@@ -114,8 +113,8 @@ public class UserController {
         mv.setViewName("/manage/user-modify");
         return mv;
     }
-    @RequestMapping("/updateUser")
-    public ModelAndView updateUser(ModelAndView mv, @RequestParam("uid") String uid,
+    @RequestMapping("/modifyUser")
+    public ModelAndView modifyUser(ModelAndView mv, @RequestParam("uid") String uid,
                                    @RequestParam("userName") String userName,
                                    @RequestParam("passWord") String passWord,
                                    @RequestParam("gender") String gender,
@@ -170,11 +169,16 @@ public class UserController {
             resultMap.put("Result", "false");
             return JSONArray.toJSONString(resultMap);
         }
-        Cart cart = new Cart();
-        session.setAttribute(Constant.CART,cart);
         session.setAttribute(Constant.USER_SESSION, user);
         resultMap.put("Result", "success");
         return JSONArray.toJSONString(resultMap);
+    }
+
+    @RequestMapping("/adminLogout")
+    public ModelAndView adminLogout(ModelAndView mv, HttpSession session){
+        session.removeAttribute("admin");
+        mv.setViewName("redirect:/backLoginPage");
+        return mv;
     }
 
     @RequestMapping("/logout")
@@ -269,7 +273,7 @@ public class UserController {
                                   @RequestParam(value = "pageIndex", required = false) String pageIndex){
         User user = (User) session.getAttribute(Constant.USER_SESSION);
         //获取总数
-        int totalCount = bookOrderService.getCount();
+        int totalCount = bookOrderService.getCountByuid(user.getUid());
         //当前页面
         int currentPageNo = 1;
         //总页数
@@ -283,7 +287,7 @@ public class UserController {
             try {
                 currentPageNo = Integer.valueOf(pageIndex);
             } catch (NumberFormatException e) {
-                mv.setViewName("redirect:../static/404.html");
+                mv.setViewName("redirect:../static/404.jsp");
                 return mv;
             }
         }
@@ -293,7 +297,6 @@ public class UserController {
         } else if (currentPageNo > totalPageCount) {
             currentPageNo = totalPageCount;
         }
-
 
         List<BookOrder> bookOrders = bookOrderService.findUserBookOrder(user.getUid(), currentPageNo, Constant.User_ORDER_PAGE_SIZE);
         mv.addObject("bookOrders", bookOrders);

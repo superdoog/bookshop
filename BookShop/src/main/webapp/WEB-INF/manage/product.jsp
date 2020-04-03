@@ -36,8 +36,7 @@
                     <c:forEach var="book" items="${books}">
                         <tr>
                             <td class="first w4 c">${book.bid }</td>
-                            <td class="thumb"><img height="60" width="60" src="${pageContext.request.contextPath}/static/image/product/${book.image}"/><a
-                                    href="" target="_blank">${book.bname}</a></td>
+                            <td class="thumb"><img height="60" width="60" src="${pageContext.request.contextPath}/static/image/product/${book.image}"/>${book.bname}</td>
                             <td><span><a href="${pageContext.request.contextPath}/modifyBookPage?bid=${book.bid}">编辑</a></span>
                                 <span><a class="deleteBook" href="javascript:;" bid=${book.bid} bname=${book.bname}>删除</a></span>
                             </td>

@@ -1,49 +1,26 @@
 package com.lv.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
 
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
+@Data
+@AllArgsConstructor
 public class Cart {
 
 	private HashMap<Book,Integer> goods;
 	
 	private double totalPrice;
 
-
-	//构造方法
 	public Cart()
 	{
 		goods = new HashMap<Book,Integer>();
 		totalPrice = 0.0;
 	}
-
-	public Cart(HashMap<Book, Integer> goods, double totalPrice) {
-		super();
-		this.goods = goods;
-		this.totalPrice = totalPrice;
-	}
-
-	public HashMap<Book, Integer> getGoods() {
-		return goods;
-	}
-
-	public void setGoods(HashMap<Book, Integer> goods) {
-		this.goods = goods;
-	}
-
-	public double getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-
 
 	/**
 	 * 添加商品进购物车的方法

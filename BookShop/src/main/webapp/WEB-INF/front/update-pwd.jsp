@@ -53,7 +53,6 @@
         </div>
     </div>
 
-
 </div>
 <script src="${pageContext.request.contextPath}/static/js/update-pwd.js"></script>
 <%@ include file="../../static/footer.jsp" %>

@@ -1,3 +1,5 @@
+var path = $("#path").val();
+
 function add(id) {
     var num = parseInt(document.getElementById("number" + id).value);
     var goodSum = document.getElementById("goodSum" + id);
@@ -36,13 +38,12 @@ function unLog() {
 
 $(document).ready(function () {
     $("#submit").click(function () {
-        $.get(path + "checkStore", "utf-8",
-            function (data) {
-                if (data.Success == "success") {
-                    window.location.href = path + "oderPage";
-                } else {
-                    alert(data.False);
-                }
-            });
+        $.get(path + "/checkStore", function (data) {
+            if (data.Success == "success") {
+                window.location.href = path + "/oderPage";
+            } else {
+                alert(data.False);
+            }
+        });
     });
 });

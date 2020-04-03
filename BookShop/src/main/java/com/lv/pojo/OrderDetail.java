@@ -21,7 +21,5 @@ public class OrderDetail {
 
     private Integer bookNum;
 
-    private String status;
-
     private List<Book> books;
 }

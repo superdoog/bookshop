@@ -14,6 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
@@ -47,7 +50,7 @@ public class BookController {
             try {
                 currentPageNo = Integer.valueOf(pageIndex);
             } catch (NumberFormatException e) {
-                mv.setViewName("redirect:../static/404.html");
+                mv.setViewName("redirect:../static/404.jsp");
                 return mv;
             }
         }
@@ -190,7 +193,7 @@ public String modifyUserPage(Model model, Integer bid) {
     }
 
     @ResponseBody
-    @RequestMapping("deleteBook")
+    @RequestMapping("/deleteBook")
     public String deleteBook(@RequestParam("bid") String bid){
         int flag;
         Map<String, String> resultMap = new HashMap<>();
@@ -212,18 +215,22 @@ public String modifyUserPage(Model model, Integer bid) {
     }
 
     @RequestMapping("/index")
-    public ModelAndView index(ModelAndView mv) {
+    public ModelAndView index(ModelAndView mv, HttpServletRequest request) {
         Set<String> bts = bookService.getBookType();
         List<Book> books = bookService.findAllBook(1,10);
+        List<Book> Cbooks = getCookies(request);
         mv.addObject("books", books);
+        mv.addObject("Cbooks", Cbooks);
         mv.addObject("bts", bts);
         mv.setViewName("front/index");
         return mv;
     }
+
     @RequestMapping("/productList")
     public ModelAndView productList(ModelAndView mv,
                                     String type,
                                     String key,
+                                    HttpServletRequest request,
                                     @RequestParam(value = "pageIndex", required = false) String pageIndex) {
 
         //获取总数
@@ -241,7 +248,7 @@ public String modifyUserPage(Model model, Integer bid) {
             try {
                 currentPageNo = Integer.valueOf(pageIndex);
             } catch (NumberFormatException e) {
-                mv.setViewName("redirect:../static/404.html");
+                mv.setViewName("redirect:../static/404.jsp");
                 return mv;
             }
         }
@@ -252,8 +259,8 @@ public String modifyUserPage(Model model, Integer bid) {
             currentPageNo = totalPageCount;
         }
 
+        List<Book> Cbooks = getCookies(request);
         Set<String> bts = bookService.getBookType();
-
         List<Book> books = bookService.findBook(key, type, currentPageNo, Constant.PRODUCT_LIST_PAGE_SIZE);
 
         mv.addObject("totalPageCount", totalPageCount);
@@ -261,21 +268,84 @@ public String modifyUserPage(Model model, Integer bid) {
         mv.addObject("currentPageNo", currentPageNo);
         mv.addObject("books", books);
         mv.addObject("bts", bts);
+        mv.addObject("Cbooks", Cbooks);
         mv.setViewName("front/product-list");
         return mv;
     }
 
     @RequestMapping("/productView")
-    public ModelAndView bookView(ModelAndView mv, Integer bid) {
+    public ModelAndView bookView(ModelAndView mv,
+                                 Integer bid,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response) {
+        setCookies(bid, request, response);
+        List<Book> Cbooks = getCookies(request);
         Book book = bookService.getBookBybid(bid);
         String dateStr = new SimpleDateFormat("yyyy-MM-dd").format(book.getDate());
         Set<String> bts = bookService.getBookType();
         mv.addObject("bts", bts);
         mv.addObject("book", book);
+        mv.addObject("Cbooks", Cbooks);
         mv.addObject("dateStr", dateStr);
         mv.setViewName("front/product-view");
         return mv;
     }
 
 
+    List<Book> getCookies(HttpServletRequest request) {
+        List<Book> Cbooks = new ArrayList<Book>();
+        String list = "";
+        //从客户端获得Cookies集合
+        Cookie[] cookies = request.getCookies();
+        //遍历这个Cookies集合
+        if (cookies != null && cookies.length > 0) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals("ListViewCookie")) {
+                    list = c.getValue();
+                }
+            }
+        }
+        if (list != "") {
+            String[] arr = list.split("#");
+            for (String s : arr) {
+                Book book = bookService.getBookBybid(Integer.parseInt(s));
+                Cbooks.add(book);
+            }
+        }
+        return Cbooks;
+    }
+
+    void setCookies(Integer bid, HttpServletRequest request, HttpServletResponse response) {
+        boolean flag = true;
+        String list = "";
+        //从客户端获得Cookies集合
+        Cookie[] cookies = request.getCookies();
+        //遍历这个Cookies集合
+        if (cookies != null && cookies.length > 0) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals("ListViewCookie")) {
+                    list = c.getValue();
+                }
+            }
+        }
+        //如果浏览记录超过10条，清零.
+        String[] arr = list.split("#");
+        if (list != "") {
+            for (String s : arr) {
+                if (Integer.parseInt(s) == bid) {
+                    flag = false;
+                }
+            }
+        }
+        if (flag) {
+            list += bid + "#";
+        }
+        if (arr != null && arr.length > 0) {
+            if (arr.length >= 10) {
+                list = "";
+            }
+        }
+        Cookie cookie = new Cookie("ListViewCookie", list);
+        response.addCookie(cookie);
+    }
 }

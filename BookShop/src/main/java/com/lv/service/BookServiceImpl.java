@@ -129,4 +129,11 @@ public class BookServiceImpl implements BookService {
         }
         return false;
     }
+
+    @Override
+    public int reduceStore(Integer bid, Integer number) {
+        Book book = bookMapper.getBookBybid(bid);
+        book.setStore(book.getStore()-number);
+        return bookMapper.updateBook(book);
+    }
 }

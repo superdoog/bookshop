@@ -1,6 +1,7 @@
 package com.lv.mapper;
 
 import com.lv.pojo.BookOrder;
+import com.lv.pojo.OrderDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,7 +19,15 @@ public interface BookOrderMapper {
 
     int getCount();
 
+    int getCountByuid(@Param("uid") int uid);
+
     int updateBookOrder(BookOrder bookOrder);
 
     BookOrder getBookOrderByoid(@Param("oid") int oid);
+
+    int insertBookOrder(BookOrder bookOrder);
+
+    int getOid(@Param("dateStr") String dateStr, @Param("uid") int uid);
+
+    int addOrderDetail(OrderDetail orderDetail);
 }

@@ -18,7 +18,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="${pageContext.request.contextPath}/"><font color="#333333">退出</font></a></li>
+                    <li><a href="${pageContext.request.contextPath}/adminLogout"><font color="#333333">退出</font></a></li>
                 </ul>
             </div>
         </nav>

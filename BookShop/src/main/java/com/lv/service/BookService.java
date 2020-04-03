@@ -29,4 +29,6 @@ public interface BookService {
 
     boolean checkStore(Integer bid, Integer number);
 
+    int reduceStore(Integer bid,Integer number);
+
 }

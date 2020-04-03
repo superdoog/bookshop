@@ -4,7 +4,7 @@ $(function () {
         var number = $("#number").val();
         var bid = $("#bid").val();
         /* addGoodsInCart?bid=${book.bid}&number=" */
-        $.post(path + "addGoodsInCart", {"number": number, "bid": bid}, function () {
+        $.post(path + "/addGoodsInCart", {"number": number, "bid": bid}, function () {
             alert("成功添加入购物车");
         });
     })
@@ -14,8 +14,8 @@ $(function () {
         var number = $("#number").val();
         var bid = $("#bid").val();
         /* addGoodsInCart?bid=${book.bid}&number=" */
-        $.post(path + "addGoodsInCart", {"number": number, "bid": bid}, function () {
-            window.location.href = path + "cartPage";
+        $.post(path + "/addGoodsInCart", {"number": number, "bid": bid}, function () {
+            window.location.href = path + "/cartPage";
         });
     })
 })

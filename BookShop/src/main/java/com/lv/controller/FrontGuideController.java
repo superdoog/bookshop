@@ -27,11 +27,11 @@ public class FrontGuideController {
 	}
 	@RequestMapping("/oderPage")
 	public String oderPage(){
-		return "user-order";
+		return "front/order";
 	}
 	@RequestMapping("/shoppingResult")
 	public String shoppingResult(){
-		return "front/shopping-result";
+		return "front/result";
 	}
 	@RequestMapping("/updatePwdPage")
 	public String updatePwdPage(){

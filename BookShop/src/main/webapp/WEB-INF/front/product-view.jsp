@@ -13,7 +13,16 @@
 <div class="container">
 
     <div class="row clearfix">
-        <div class="col-md-1 column">
+        <div class="col-md-1 column lefter">
+            <div class="last-view">
+                <h2>最近浏览</h2>
+                <c:forEach items="${Cbooks}" var="cbook" end="10">
+                    <dl class="clearfix">
+                        <dt><img height="50" width="50" src="${pageContext.request.contextPath}/static/image/product/${cbook.image}" /></dt>
+                        <dd><a href="${pageContext.request.contextPath}/productView?bid=${cbook.bid}">${cbook.bname}</a></dd>
+                    </dl>
+                </c:forEach>
+            </div>
         </div>
         <div class="col-md-10 column">
             <div class="page-header">

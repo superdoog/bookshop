@@ -6,12 +6,12 @@
          version="4.0">
 
     <welcome-file-list>
-        <welcome-file>/WEB-INF/front/index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/front/index2.jsp</welcome-file>
     </welcome-file-list>
 
     <error-page>
         <error-code>404</error-code>
-        <location>/static/404.html</location>
+        <location>/static/404.jsp</location>
     </error-page>
 
     <servlet>
@@ -27,16 +27,6 @@
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
-    <!--    <filter>-->
-    <!--        <filter-name>login</filter-name>-->
-    <!--        <filter-class>com.lv.util.LoginFilter</filter-class>-->
-    <!--    </filter>-->
-    <!--    <filter-mapping>-->
-    <!--        <filter-name>login</filter-name>-->
-    <!--        <url-pattern>*.do</url-pattern>-->
-    <!--    </filter-mapping>-->
-
 
     <!--encodingFilter-->
     <filter>

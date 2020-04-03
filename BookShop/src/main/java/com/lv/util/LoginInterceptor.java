@@ -6,11 +6,22 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author lv
+ */
 public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        return false;
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
+        String path = request.getRequestURI();
+        String admin = (String) request.getSession().getAttribute("admin");
+        for (String url : Constant.Filter_Pages) {
+            if(path.indexOf(url) > -1 && admin==null){
+                request.getRequestDispatcher("/WEB-INF/manage/login.jsp").forward(request, response);
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

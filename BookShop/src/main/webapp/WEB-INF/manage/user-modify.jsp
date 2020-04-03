@@ -26,7 +26,7 @@
                 <br>
             </div>
 
-            <form role="form" method="post" action="${pageContext.request.contextPath}/updateUser">
+            <form role="form" method="post" action="${pageContext.request.contextPath}/modifyUser">
                 <table class="table table-condensed text-center ">
                     <input type="hidden" name="uid" value="${user.uid}"/>
                     <tr>

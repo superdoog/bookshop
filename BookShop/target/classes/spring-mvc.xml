@@ -26,6 +26,15 @@
     <!-- 4.扫描web相关的bean -->
     <context:component-scan base-package="com.lv.controller" />
 
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 配置拦截器作用的路径 -->
+            <mvc:mapping path="/**" />
+            <bean class="com.lv.util.LoginInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!-- 上传文件 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 上传文件的最大尺寸 5M-->
