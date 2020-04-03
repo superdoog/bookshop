@@ -42,8 +42,7 @@ $(function () {
     userPassword.bind("focus", function () {
         validate(userPassword.next(), {"color": "#666666"}, " 密码长度必须是大于等于6小于20", false);
     }).bind("blur", function () {
-        if (userPassword.val() != null && userPassword.val().length >= 6
-            && userPassword.val().length < 20) {
+        if (userPassword.val() != null && userPassword.val().length >= 6 && userPassword.val().length < 20) {
             validate(userPassword.next(), {"color": "green"}, "<span class='glyphicon glyphicon-ok'></span>", true);
         } else {
             validate(userPassword.next(), {"color": "red"}, " 密码输入不符合规范，请重新输入", false);
@@ -53,8 +52,7 @@ $(function () {
     ruserPassword.bind("focus", function () {
         validate(ruserPassword.next(), {"color": "#666666"}, " 请输入与上面一致的密码", false);
     }).bind("blur", function () {
-        if (ruserPassword.val() != null && ruserPassword.val().length > 6
-            && ruserPassword.val().length < 20 && userPassword.val() == ruserPassword.val()) {
+        if ( userPassword.val() == ruserPassword.val()) {
             validate(ruserPassword.next(), {"color": "green"}, "<span class='glyphicon glyphicon-ok'></span>", true);
         } else {
             validate(ruserPassword.next(), {"color": "red"}, " 两次密码输入不一致，请重新输入", false);
