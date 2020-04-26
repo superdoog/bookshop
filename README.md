@@ -3,8 +3,8 @@ ssm书店 练手demo bootstrap SpringMVC+Spring+MyBatis
 
 # 项目预览
 [http://49.235.62.115:8080/BookShop](http://49.235.62.115:8080/BookShop) 前台
-
 [http://49.235.62.115:8080/BookShop/backLogin](http://49.235.62.115:8080/BookShop/backLogin) 后台
+
 前台账号：test 密码：123456
 后台账号：admin 密码：admin
 
