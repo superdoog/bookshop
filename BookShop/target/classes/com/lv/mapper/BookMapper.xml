@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lv.mapper.BookMapper">
+    <select id="findAllBook" resultType="Book">
+        select *
+        from book_shop.book
+        limit #{currentPage},#{pageSize}
+    </select>
+
+    <select id="findBook" resultType="com.lv.pojo.Book">
+        select *
+        from book
+        <where>
+            <if test="key != null and key != ''">
+                bname like concat('%',#{key},'%')
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+        </where>
+        limit #{currentPage},#{pageSize}
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(1)
+        from book
+    </select>
+
+    <select id="getSelectCount" resultType="int">
+        select count(1)
+        from book
+        <where>
+            <if test="key != null and key != ''">
+                bname like concat('%',#{key},'%')
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteBybid">
+        delete
+        from book
+        where bid = #{bid}
+    </delete>
+
+    <select id="getBookBybid" resultType="Book">
+        select *
+        from book
+        where bid = #{bid}
+    </select>
+
+    <update id="updateBook" parameterType="Book">
+        update book_shop.book
+        <set>
+            <if test="bname != null and bname != ''">
+                bname = #{bname},
+            </if>
+            <if test="detail != null and detail != ''">
+                detail = #{detail},
+            </if>
+            <if test="price != null and price != ''">
+                price = #{price},
+            </if>
+            <if test="writer != null and writer != ''">
+                writer = #{writer},
+            </if>
+            <if test="printer != null and printer != ''">
+                printer = #{printer},
+            </if>
+            <if test="date != null">
+                date = #{date},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="image != null and image != ''">
+                image = #{image},
+            </if>
+            <if test="store != null">
+                store = #{store}
+            </if>
+        </set>
+        where bid = #{bid}
+    </update>
+    <select id="getBookType" resultType="java.lang.String">
+        select distinct type
+        from book_shop.book
+    </select>
+
+    <insert id="addBook" parameterType="Book">
+        insert into book_shop.book(bid, bname, detail, price, writer, printer, date, type, image, store)
+        VALUES (#{bid}, #{bname}, #{detail}, #{price}, #{writer}, #{printer}, #{date}, #{type}, #{image}, #{store})
+    </insert>
+
+
+</mapper>

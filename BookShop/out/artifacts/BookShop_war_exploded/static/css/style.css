@@ -1,0 +1,67 @@
+
+/*点击删除按钮后弹出的层*/
+.zhezhao {display: none; /* 修改这里可以让遮罩层消失*/position: absolute;top: 0;left: 0;width: 100%;height: 100%;background: #000;opacity: 0.7;filter: alpha(opacity=70);overflow: hidden;}
+.remove {display: none; /* 修改这里可以让删除框消失*/width: 400px;height: 190px;position: absolute;top: 200px;left: 500px;background: #fff;border-radius: 4px;}
+.removerChid {margin: 4px;border: 1px solid #ccc;}
+.removerChid h2 {padding-left: 8px;font-size: 14px;line-height: 30px;margin: 4px 8px;border-bottom: 1px solid #39ace7;}
+.removeMain {margin-top: 38px;text-align: center;margin-bottom: 30px;border-radius: 4px;}
+.removeMain a {padding: 0 20px;display: inline-block;height: 30px;line-height: 30px;border-radius: 4px;border: 1px solid #39ace7;margin-top: 30px;background: #39ace7;color: #fff;}
+.removeMain a:hover, .removeMain a:active {background: #39ace7;}
+
+/*页码*/
+.page-bar {position: relative;margin-top: 10px;}
+.page-num-ul li {float: left;}
+.page-num-ul li a {display: inline-block;padding: 3px 5px;margin: 0px 3px;border: 1px solid #b8b8b8;}
+.page-num-ul a:hover, .page-num-ul .thisclass {border: 1px solid #c5063f;background-color: #c5063f;color: #FFF;text-decoration: none;}
+.page-key {height: 19px;width: 54px;}
+.page-btn {border: 1px solid #b8b8b8;background-color: #fff3f8;display: inline-block;width: 52px;height: 25px;line-height: 25px;font-weight: 20px;}
+.page-go-form {position: absolute;display: inline-block;right: 50px;top: 0px;}
+.page-go-form input, label, button {margin: 0px 5px;}
+
+
+.lefter { float:left; width:180px; }
+.lefter .box { border:1px solid #c3c3c3; }
+.lefter h2 { background:#ECECEC; font-size:14px; color:#333333; padding:2px 8px; }
+.lefter .last-view { border:1px solid #c3c3c3; }
+.lefter .last-view dl { margin:5px; }
+.lefter .last-view dl dt { float:left; width:60px; height:60px; text-align:center; }
+.lefter .last-view dl dt img { border:1px solid #ccc; }
+.lefter .last-view dl dd { height:60px; margin-left:66px; }
+.lefter .last-view dl dd a { color:#666; }
+
+ul.product li { width:110px; line-height:18px; height:160px; float:left; display:inline; margin:9px; }
+ul.product li dl dt { text-align:center; }
+ul.product li dl dt img { width:100px; height:100px; border:1px solid #ccc; }
+ul.product li dl dd.title { word-wrap:no-wrap; word-break:break-all; height:36px; overflow:hidden; }
+ul.product li dl dd.title a { color:#666; }
+ul.product li dl dd.price { color:#c30; font-weight:bold; }
+
+.product-list ul.product li { width:172px; height:240px; line-height:22px; font-size:14px; overflow:hidden; }
+.product-list ul.product li dl dt img { width:170px; height:170px; border:1px solid #ccc; }
+.product-list ul.product li dl dd.title { height:44px; }
+
+#product .infos .thumb { float:left; width:320px; text-align:center; }
+#product .infos .buy { float:right; width:440px; line-height:40px; }
+#product .infos .buyBtn {  width:134px; height:36px; }
+#product .infos .buy .price { color:#c00; font-weight:bold; font-size:24px; }
+#product .infos .buy .button { border:1px solid #ffefd2; padding:10px; background:#fff8e7; margin:20px auto; text-align:center; }
+#product .infos .buy .button input { border:0; margin:0 10px; background:url(../image/bg.png) left -176px; height:35px; width:144px; cursor:pointer; }
+#product .introduce .text { padding:20px; font-size:14px; line-height:25px; }
+#products .introduce .text { padding:20px; font-size:14px; line-height:25px; }
+
+#shopping { }
+#shopping table { width:100%; line-height:24px; border-top:2px solid #dfc9b2; border-bottom:2px solid #dfc9b2; }
+#shopping table th { background:#f7f4eb; color:#8a7152; }
+#shopping table td { padding:10px 0; border-top:1px solid #dfc9b2; }
+#shopping table td.thumb img { border:1px solid #dfdfe0; margin:0 10px; vertical-align:middle; }
+#shopping table td.price,
+#shopping table td.number { text-align:center; width:100px; border-left:1px solid #e1e1e1; }
+#shopping table td.price { color:#cc3300; font-weight:bold; }
+#shopping table td.delete { width:60px; text-align:center; border-left:1px solid #e1e1e1; }
+#shopping table td.number dl { width:80px; margin:0 auto; }
+#shopping table td.number dl dt { float:left; display:inline; width:25px; text-align:center; margin:0 4px; }
+#shopping table td.number dl dt input { width:20px; border:1px solid #c9c9c9; padding:2px; text-align:center; }
+#shopping table td.number dl dd { float:left; width:28px; margin:3px 0; text-align:center; line-height:20px; height:19px; overflow:hidden; border:1px solid #c9c9c9; cursor:pointer; }
+#shopping .button { text-align:right; padding:10px 0; }
+#shopping .button input { border:0; background:url(../image/bg.png) left -213px; width:144px; height:35px; cursor:pointer; }
+#shopping .shadow { width:500px; margin:50px auto; }
