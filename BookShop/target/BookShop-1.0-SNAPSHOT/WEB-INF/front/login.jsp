@@ -22,6 +22,7 @@
                     <h1>欢迎登录 Book Shop</h1>
                 </div>
                 <div class="panel-body">
+                    <br>
                     <form id="loginForm">
                         <table>
                             <tr>
@@ -37,8 +38,18 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td class="field">验证码：</td>
+                                <td>
+                                    <input class="text form-control" type="text" name="yan" id="yan"
+                                           required/>
+                                    <img title="点击刷新" src="<%=request.getContextPath()%>/yan" onclick="Refresh()">
+                                </td>
+                            </tr>
+                            <tr>
                                 <td></td>
-                                <td><input class="btn btn-default active" type="button" id="submit" value="登录"/></td>
+                                <td><br>
+                                    <input class="btn btn-default active" type="button" id="submit" value="登录"/>
+                                </td>
                             </tr>
                         </table>
                     </form>

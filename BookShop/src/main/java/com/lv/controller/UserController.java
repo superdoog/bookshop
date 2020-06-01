@@ -157,9 +157,16 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("/loginCheck")
-    public String loginCheck(@RequestParam("userName") String userName, @RequestParam("passWord") String passWord,HttpSession session){
+    public String loginCheck(@RequestParam("userName") String userName, @RequestParam("passWord") String passWord, @RequestParam("yan") String yan,HttpSession session){
         Map<String, String> resultMap = new HashMap<>();
         User user = userService.getUserByuname(userName);
+        String yanCode = (String) session.getAttribute("yanCode");
+
+        if (!yan.equals(yanCode)) {
+            resultMap.put("Result","yanFalse");
+            return JSONArray.toJSONString(resultMap);
+        }
+
         if (user == null){
             resultMap.put("Result", "null");
             return JSONArray.toJSONString(resultMap);
