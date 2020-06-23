@@ -71,14 +71,14 @@ public class BookController {
     }
 
     @RequestMapping("/addBookPage")
-    public ModelAndView addUserPage(ModelAndView mv) {
+    public ModelAndView addBookPage(ModelAndView mv) {
         Set<String> bts = bookService.getBookType();
         mv.addObject("bts", bts);
         mv.setViewName("manage/product-add");
         return mv;
     }
     @RequestMapping("/addBook")
-    public ModelAndView addUser(ModelAndView mv, HttpSession session,
+    public ModelAndView addBook(ModelAndView mv, HttpSession session,
                                 String bname,
                                 String detail,
                                 String price,
@@ -138,7 +138,7 @@ public class BookController {
 //    }
 
 @RequestMapping("/modifyBookPage")
-public String modifyUserPage(Model model, Integer bid) {
+public String modifyBookPage(Model model, Integer bid) {
     Book book = bookService.getBookBybid(bid);
     Set<String> bts = bookService.getBookType();
     model.addAttribute("bts", bts);
@@ -174,8 +174,6 @@ public String modifyUserPage(Model model, Integer bid) {
         book.setPrinter(printer);
         book.setDate(date);
         book.setStore(store);
-
-        System.out.println(book);
 
         if (image == null) {
             book.setImage(null);
