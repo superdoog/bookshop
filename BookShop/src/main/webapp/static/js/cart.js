@@ -10,7 +10,7 @@ function add(id) {
         goodSum.innerHTML = document.getElementById("number" + id).value * document.getElementById("price" + id).value;
         hiddenSum.value = parseInt(hiddenSum.value) + parseInt(document.getElementById("price" + id).value);
         sum.innerHTML = parseInt(hiddenSum.value);
-        $.post("addGoodsInCart.do", {"number": 1, "bid": id}, function () {
+        $.post("addGoodsInCart", {"number": 1, "bid": id}, function () {
 
         });
     }
@@ -26,7 +26,7 @@ function sub(id) {
         goodSum.innerHTML = document.getElementById("number" + id).value * document.getElementById("price" + id).value;
         hiddenSum.value = parseInt(hiddenSum.value) - parseInt(document.getElementById("price" + id).value);
         sum.innerHTML = parseInt(hiddenSum.value);
-        $.post("addGoodsInCart.do", {"number": -1, "bid": id}, function () {
+        $.post("addGoodsInCart", {"number": -1, "bid": id}, function () {
 
         });
     }

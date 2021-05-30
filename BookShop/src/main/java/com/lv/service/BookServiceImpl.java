@@ -122,18 +122,23 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public boolean checkStore(Integer bid, Integer number) {
+    public boolean checkStore(int bid, int number) {
         int store = bookMapper.getBookBybid(bid).getStore();
-        if (store-number>=0){
+//        if (store-number>=0){
+//            return true;
+//        }
+//        return false;
+        if (store < number || number <= 0) {
+            return false;
+        } else {
             return true;
         }
-        return false;
     }
 
     @Override
-    public int reduceStore(Integer bid, Integer number) {
+    public int reduceStore(int bid, int number) {
         Book book = bookMapper.getBookBybid(bid);
-        book.setStore(book.getStore()-number);
+        book.setStore(book.getStore() - number);
         return bookMapper.updateBook(book);
     }
 }

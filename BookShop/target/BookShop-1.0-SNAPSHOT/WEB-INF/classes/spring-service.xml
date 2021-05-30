@@ -16,10 +16,10 @@
     <!-- 扫描service相关的bean -->
     <context:component-scan base-package="com.lv.service" />
 
-<!--    &lt;!&ndash;ServiceImpl注入到IOC容器中&ndash;&gt;-->
+    <!--ServiceImpl注入到IOC容器中-->
 
-<!--    &lt;!&ndash; 负责将net.togogo.empmvc141.service包及子包中，有@Service,@Compoment,@Repository注解的组件加载到spring中 &ndash;&gt;-->
-<!--    <context:component-scan base-package="com.lv.service"></context:component-scan>-->
+    <!-- 负责将net.togogo.empmvc141.service包及子包中，有@Service,@Compoment,@Repository注解的组件加载到spring中 -->
+    <context:component-scan base-package="com.lv.service"></context:component-scan>
 
     <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

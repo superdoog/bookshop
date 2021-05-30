@@ -27,8 +27,8 @@ public interface BookService {
 
     int addBook(Book book);
 
-    boolean checkStore(Integer bid, Integer number);
+    boolean checkStore(int bid, int number);
 
-    int reduceStore(Integer bid,Integer number);
+    int reduceStore(int bid,int number);
 
 }

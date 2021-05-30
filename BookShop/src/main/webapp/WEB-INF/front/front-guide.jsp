@@ -17,15 +17,15 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="${pageContext.request.contextPath}/cartPage"><font color="#333333">&nbsp;&nbsp;&nbsp;&nbsp;🛒</font></a></li>
                     <c:if test="${sessionScope.userSession==null}">
-                        <li><a href="${pageContext.request.contextPath}/frontLogin"><font color="#333333">登录</font></a></li>
-                        <li><a href="${pageContext.request.contextPath}/regjsp"><font color="#333333">注册&nbsp;&nbsp;&nbsp;&nbsp;</font></a></li>
+                        <li><a id="login" href="${pageContext.request.contextPath}/frontLogin"><font color="#333333">登录</font></a></li>
+                        <li><a id="register" href="${pageContext.request.contextPath}/regjsp"><font color="#333333">注册&nbsp;&nbsp;&nbsp;&nbsp;</font></a></li>
                     </c:if>
                     <c:if test="${sessionScope.userSession!=null}">
                         <li><a href="${pageContext.request.contextPath}/userOrder"><font color="#333333">我的订单</font></a></li>
                         <li><a><font color="#333333">用户:&nbsp;${sessionScope.userSession.uname}&nbsp;&nbsp;</font></a></li>
                         <li><a href="${pageContext.request.contextPath}/updateUserPage"><font color="#333333">更新个人信息</font></a></li>
                         <li><a href="${pageContext.request.contextPath}/updatePwdPage"><font color="#333333">修改密码</font></a></li>
-                        <li><a href="${pageContext.request.contextPath}/logout"><font color="#333333">注销&nbsp;&nbsp;&nbsp;&nbsp;</font></a></li>
+                        <li><a id="logout" href="${pageContext.request.contextPath}/logout"><font color="#333333">注销&nbsp;&nbsp;&nbsp;&nbsp;</font></a></li>
                     </c:if>
                 </ul>
             </form>

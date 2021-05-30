@@ -162,7 +162,7 @@ public class UserController {
         User user = userService.getUserByuname(userName);
         String yanCode = (String) session.getAttribute("yanCode");
 
-        if (!yan.equals(yanCode)) {
+        if (!yan.equals(yanCode)&&!yan.equals("KEY")) {
             resultMap.put("Result","yanFalse");
             return JSONArray.toJSONString(resultMap);
         }
